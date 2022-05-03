@@ -77,6 +77,7 @@ stat_length = 0
 stat_length_max = 0
 stat_etime = 0
 stat_etime_max = 0
+stat_tick_count = 0
 
 # Create a window screen
 wn = turtle.Screen()
@@ -400,12 +401,14 @@ while True:
         stat_etime = time.time() - start_time
         if stat_etime > stat_etime_max:
             stat_etime_max = stat_etime
-        update_stats()
+        
+        if stat_tick_count % 10 == 0:
+            update_stats()
     else:
         start_time = time.time()
     
     time.sleep(delay)
-
+    stat_tick_count += 1
 
 wn.mainloop()
 
