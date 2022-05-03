@@ -1,10 +1,12 @@
 import os
 import math
 import random
+from re import L
 import turtle
 import time
 import pygame
-from playsound import playsound
+#from playsound import playsound
+from tkinter import PhotoImage
 
 p = os.path.dirname(os.path.abspath(__file__))
 
@@ -84,20 +86,32 @@ wn = turtle.Screen()
 wn.title("Snake Game")
 wn.bgcolor("blue")
 if BG_IMG:
-    wn.bgpic(f"{p}/desert.gif")
+    wn.bgpic(f"{p}/images/desert.gif")
 wn.setup(width=game_width, height=game_height)
 wn.tracer(0)
 
+
 # Init audio
 pygame.mixer.init()
-pygame.mixer.music.load(f"{p}/tumbleweed.mp3")
+pygame.mixer.music.load(f"{p}/sounds/tumbleweed.mp3")
 food_sounds = []
-food_sounds.append(pygame.mixer.Sound(f"{p}/bell.wav"))
-food_sounds.append(pygame.mixer.Sound(f"{p}/whip-crack-1.wav"))
+food_sounds.append(pygame.mixer.Sound(f"{p}/sounds/bell.wav"))
+food_sounds.append(pygame.mixer.Sound(f"{p}/sounds/whip-crack-1.wav"))
 
 # Start music
 if BG_MUSIC:
     pygame.mixer.music.play(-1) # If number of times = -1, keep playing
+
+# Create title
+title_images = []
+for i in range(1,9):
+    t = PhotoImage(file=f"{p}/images/title{i}.png")
+    title_images.append(t)
+    wn.addshape(f"title_image{i}", turtle.Shape("image", t))
+
+title = turtle.Turtle()
+title.penup()
+title.hideturtle()
 
 # Head of the snake
 head = turtle.Turtle()
@@ -107,11 +121,11 @@ head.penup()
 head.goto(0,0)
 head.direction = "stop"
 if HEAD_IMG:
-    wn.addshape(f"{p}/snake-head-down.gif")
-    wn.addshape(f"{p}/snake-head-up.gif")
-    wn.addshape(f"{p}/snake-head-left.gif")
-    wn.addshape(f"{p}/snake-head-right.gif")
-    head.shape(f"{p}/snake-head-up.gif")
+    wn.addshape(f"{p}/images/snake-head-down.gif")
+    wn.addshape(f"{p}/images/snake-head-up.gif")
+    wn.addshape(f"{p}/images/snake-head-left.gif")
+    wn.addshape(f"{p}/images/snake-head-right.gif")
+    head.shape(f"{p}/images/snake-head-up.gif")
 
 # Food in the game
 food = turtle.Turtle()
@@ -166,30 +180,34 @@ def save_config():
 # Assigning key directions
 def goup():
     if head.direction == "stop":
+        title_off()
         start_time = time.time()
     if head.direction != "down" and head.direction != "up":
-        head.shape(f"{p}/snake-head-up.gif")
+        head.shape(f"{p}/images/snake-head-up.gif")
         head.direction = "up"
 
 def godown():
     if head.direction == "stop":
+        title_off()
         start_time = time.time()
     if head.direction != "up" and head.direction != "down":
-        head.shape(f"{p}/snake-head-down.gif")
+        head.shape(f"{p}/images/snake-head-down.gif")
         head.direction = "down"
 
 def goleft():
     if head.direction == "stop":
+        title_off()
         start_time = time.time()
     if head.direction != "right" and head.direction != "left":
-        head.shape(f"{p}/snake-head-left.gif")
+        head.shape(f"{p}/images/snake-head-left.gif")
         head.direction = "left"
 
 def goright():
     if head.direction == "stop":
+        title_off()
         start_time = time.time()
     if head.direction != "left" and head.direction != "right":
-        head.shape(f"{p}/snake-head-right.gif")
+        head.shape(f"{p}/images/snake-head-right.gif")
         head.direction = "right"
 
 def move():
@@ -201,6 +219,25 @@ def move():
         head.setx(head.xcor()-segment_offset)
     if head.direction == "right":
         head.setx(head.xcor()+segment_offset)
+
+def title_off():
+    for i in range(1,9):
+        title.shape(f'title_image{i}')
+        wn.update()
+        time.sleep(.05)
+
+    title.goto(9999,9999)
+    wn.update()
+
+def title_show():
+    title.goto(0,100)
+    title.showturtle()
+    wn.update()
+
+    for i in range(8,0,-1):
+        title.shape(f'title_image{i}')
+        wn.update
+        time.sleep(.05)
 
 def toggle_stats():
     global show_stats
@@ -228,7 +265,7 @@ def update_score():
 def update_stats():
     statpen.clear()
     if show_stats:
-        statpen.write(f"Length: {stat_length}  Time: {round(stat_etime,2)}\nMax Len: {stat_length_max}  Max Time: {round(stat_etime_max,2)}",
+        statpen.write(f"Length: {stat_length}  Time: {round(stat_etime,2)}\nMax Len: {stat_length_max}  Max Time: {round(stat_etime_max,2)}\nTotal Plays: {config_file['total_plays']}",
             align="left", font=("candara",16,"normal"))
 
 def lose_game():
@@ -272,8 +309,7 @@ def lose_game():
 
     update_score()
     update_stats()
-    
-    # Show a lose game message
+    title_show()
 
     # Make music restart?
 
@@ -307,6 +343,7 @@ wn.onkeypress(goright, "Right")
 wn.onkeypress(toggle_stats, "1")
 wn.onkeypress(toggle_music, "2")
 
+title_show()
 update_score()
 update_stats()
 place_food(0,100)
