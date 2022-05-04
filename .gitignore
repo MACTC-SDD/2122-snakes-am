@@ -1,0 +1,9 @@
+*.pyc
+*.swp
+.DS_Store
+
+#ignore thumbnails created by windows
+Thumbs.db
+
+#ignore .env settings files
+.env*
