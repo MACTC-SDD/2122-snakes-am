@@ -61,7 +61,6 @@ config_file = {}
 delay = init_delay
 
 score = 0
-#high_score = 0
 tail_color = ORANGE
 tail_shape = "square"
 if RND_TAIL_SHAPE:
@@ -97,6 +96,12 @@ pygame.mixer.music.load(f"{p}/sounds/tumbleweed.mp3")
 food_sounds = []
 food_sounds.append(pygame.mixer.Sound(f"{p}/sounds/bell.wav"))
 food_sounds.append(pygame.mixer.Sound(f"{p}/sounds/whip-crack-1.wav"))
+
+hiss_sounds = []
+for i in range(0,4):
+    hiss_sounds.append(pygame.mixer.Sound(f"{p}/sounds/hiss{i}.wav"))
+
+dead_sound = pygame.mixer.Sound(f"{p}/sounds/dead.wav")
 
 # Start music
 if BG_MUSIC:
@@ -275,6 +280,9 @@ def lose_game():
     global stat_etime
     global config_file
 
+    if SOUND_EFFECTS:
+        pygame.mixer.Sound.play(dead_sound)
+
     if EXPLODE:
         for i in range(0,15):
             for segment in segments:
@@ -444,6 +452,10 @@ while True:
     else:
         start_time = time.time()
     
+    # Hiss now and then
+    if SOUND_EFFECTS and stat_tick_count % random.randint(15,30) == 0:
+        pygame.mixer.Sound.play(random.choice(hiss_sounds))
+
     time.sleep(delay)
     stat_tick_count += 1
 
