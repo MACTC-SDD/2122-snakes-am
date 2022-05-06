@@ -18,6 +18,7 @@ p = os.path.dirname(os.path.abspath(__file__))
 # Explosions - Alex
 # Gradient - Luciel
 # Real-time boundary adjustment - Nolan
+# Food alignment - De'Antae
 BG_IMG = True       # Set background image
 HEAD_IMG = True     # Set snake head image
 SHOW_STATS = False   # Show statistics by default (toggle with '1')
@@ -28,6 +29,7 @@ BG_MUSIC = True     # Play background music (toggle with '2')
 SOUND_EFFECTS = True # Play sound effects on eating/dying
 EXPLODE = True      # Show Explosing effect
 CLEAR_HS = False     # Reset high score when launching
+ALIGN_FOOD = True   # Make food line up with snake
 
 # TODO: Enhancements to add
 GET_CONFIG = False  # Gather config settings at start
@@ -305,7 +307,6 @@ def lose_game():
     segments.clear()
 
 
-
     head.goto(0,0)
     head.direction = "stop"
     score = 0
@@ -327,6 +328,10 @@ def place_food(x=9999,y=9999):
     if y == 9999:
         y = random.randint(-(int(wn.window_height()/2)-food_padding),int(wn.window_height()/2)-food_padding)
  
+    if ALIGN_FOOD:
+        x = int(x/segment_offset) * segment_offset
+        y = int(y/segment_offset) * segment_offset
+
     colors = random.choice(all_colors)
     shapes = random.choice(['square','triangle','circle'])
     food.speed(0)
@@ -458,7 +463,7 @@ while True:
 
     time.sleep(delay)
     stat_tick_count += 1
-
+    print(f'h:{head.xcor()},{head.ycor()}')
 wn.mainloop()
 
 
