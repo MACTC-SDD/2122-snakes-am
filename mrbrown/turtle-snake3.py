@@ -463,7 +463,6 @@ while True:
 
     time.sleep(delay)
     stat_tick_count += 1
-    print(f'h:{head.xcor()},{head.ycor()}')
 wn.mainloop()
 
 
