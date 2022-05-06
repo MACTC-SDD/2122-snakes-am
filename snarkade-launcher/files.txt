@@ -1,3 +1,8 @@
-Colby=Thing.py
-Colby=Work.py
-Colby=sounds.py
+Colby:Thing.py
+Colby:Work.py
+Colby:sounds.py
+Test:test.py
+Test2:test.py
+Teset3:test.py:cover.png
+Kelsey:kelsey/turtle-snake-kf.py:cover.png
+Desert Rattler:mrbrown/turtle-snake3.py:cover.png
