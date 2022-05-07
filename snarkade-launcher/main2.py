@@ -85,7 +85,6 @@ def add_entry(title_w, file_path_w, error, image_path = 'cover.png'):
     # If no leading / consider path relative to running path
     file_path = localize_path(file_path)
 
-    print (file_path)
     if not os.path.exists(file_path):
       error['text'] = 'File not found.'
     else:
@@ -97,7 +96,6 @@ def add_entry(title_w, file_path_w, error, image_path = 'cover.png'):
       except:
         error['text']="I could not add said file."
       
-    
 # Destroy all specified widgets
 def clear_widgets(widgets_to_remove):
   for w in widgets_to_remove:
@@ -109,7 +107,6 @@ def play_clicked(idx=0):
   file_path = localize_path(button.file_path)
   # Use .run if you want it to block until subprocess completes
   subprocess.Popen([PYTHON3, file_path])
-  #showinfo(title='Info',message=f'Index: {idx} path: {file_path}')
 
 # Read all items from config file and create play buttons
 def read_config():
@@ -124,12 +121,13 @@ def read_config():
 
       kvp = line.split(':')
       title,path = kvp[0],kvp[1]
+      # Image (if specified and exists) will come from individual game path
+      # It will default to cover.png but could be edited in config file directly
+      # Images will be resized to COVERX/COVERY 
       if len(kvp) > 2:
         image_path = kvp[2]
         image_path = f'{os.path.dirname(localize_path(path))}/{image_path}'
-        print(f'exists:{os.path.exists(image_path)} - {image_path}-')
         if os.path.exists(image_path):
-          print(f'img path:{image_path}')
           i = Image.open(image_path)
           i = i.resize((COVERX,COVERY), Image.ANTIALIAS)
           images[line] = ImageTk.PhotoImage(i)
