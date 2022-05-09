@@ -20,9 +20,6 @@ try:
 except ImportError:
   pass
 
-print (f'{GAME_PATH}, {PYTHON3}')
-exit()
-
 window=Tk()
 window.geometry("550x400")
 window.resizable(False,False)
