@@ -7,7 +7,7 @@ import subprocess
 
 p = os.path.dirname(os.path.abspath(__file__))
 BUTTONS_PER_ROW = 4
-GAME_PATH = '~/Documents/Git/2122-snakes-am'
+GAME_PATH = '/home/pi/Documents/Git/2122-snakes-am'
 PYTHON3 = '/usr/bin/python3'
 
 COVERX = 40
