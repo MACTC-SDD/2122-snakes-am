@@ -162,6 +162,8 @@ def place_buttons(buttons):
     if x > BUTTONS_PER_ROW-1:
       x = 0
       y += 1
+    button.update()
+    print(f'Width: {button.winfo_width()}')
     
 # If we don't start with root path, add running path
 def localize_path(file_path):
