@@ -7,3 +7,4 @@ Thumbs.db
 
 #ignore .env settings files
 .env*
+env.py

@@ -7,11 +7,21 @@ import subprocess
 
 p = os.path.dirname(os.path.abspath(__file__))
 BUTTONS_PER_ROW = 4
-GAME_PATH = '/Users/chris/l/icloud/CTC Git/2122-snakes-am'
-PYTHON3 = '/Users/chris/opt/anaconda3/bin/python3'
+GAME_PATH = '~/Documents/Git/2122-snakes-am'
+PYTHON3 = '/usr/bin/python3'
+
 COVERX = 40
 COVERY = 40
 
+try:
+  from env import env
+  GAME_PATH = env['GAME_PATH']
+  PYTHON3 = env['PYTHON3']
+except ImportError:
+  pass
+
+print (f'{GAME_PATH}, {PYTHON3}')
+exit()
 
 window=Tk()
 window.geometry("550x400")
