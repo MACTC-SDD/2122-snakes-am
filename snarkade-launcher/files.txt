@@ -1,8 +1,6 @@
-Colby:Thing.py
-Colby:Work.py
-Colby:sounds.py
-Test:test.py
-Test2:test.py
-Teset3:test.py:cover.png
+Austin:austin/turtle-snake-austin.py
+Jasmine:jasmine/snek-game.py
+Keith:keith/turtle-snake-keith.py
 Kelsey:kelsey/turtle-snake-kf.py:cover.png
+Trevor:trevor/squid-games.py
 Desert Rattler:mrbrown/turtle-snake3.py:cover.png
