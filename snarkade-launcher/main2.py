@@ -163,7 +163,10 @@ def place_buttons(buttons):
       x = 0
       y += 1
     button.update()
-    print(f'Width: {button.winfo_width()}')
+    # Adjust width since button sizes change
+    w = button.winfo_width() * BUTTONS_PER_ROW
+    window.geometry(f"{w}x400")
+
     
 # If we don't start with root path, add running path
 def localize_path(file_path):
