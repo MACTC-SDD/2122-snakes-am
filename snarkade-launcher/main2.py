@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter.messagebox import showinfo
 from PIL import Image,ImageTk
+from tkhtmlview import HTMLLabel
 import subprocess
 
 p = os.path.dirname(os.path.abspath(__file__))
@@ -48,6 +49,10 @@ def main_menu():
 
   labelthingy.place(relx=.5,rely=.05,anchor=N)
   main_widgets.extend([labelthingy, addnew, accessold])
+
+  # TODO: Move this to launcher window and show game details on hover
+  #test_label = HTMLLabel(window, html="<h1>Cool!</h1>", width=200,height=100) 
+  #test_label.place(relx=.05,y=180,height=200,relwidth=.9,)
 
 # Display all play buttons
 def launch_menu():
