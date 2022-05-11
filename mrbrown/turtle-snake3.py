@@ -397,7 +397,6 @@ while True:
 
         # Change tail color based on level
         if len(segments) % segments_level == 0:
-            print (min(int(len(segments) / segments_level),len(level_colors)-1))
             tail_color = level_colors[min(int(len(segments) / segments_level),len(level_colors)-1)]
 
         if SCORE_METHOD == "progressive":
