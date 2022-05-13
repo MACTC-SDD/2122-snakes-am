@@ -20,6 +20,7 @@ p = os.path.dirname(os.path.abspath(__file__))
 # Gradient - Luciel
 # Real-time boundary adjustment - Nolan
 # Food alignment - De'Antae
+# Disable resize - Colling
 BG_IMG = True       # Set background image
 HEAD_IMG = True     # Set snake head image
 SHOW_STATS = False   # Show statistics by default (toggle with '1')
@@ -32,6 +33,7 @@ EXPLODE = True      # Show Explosing effect
 CLEAR_HS = False     # Reset high score when launching
 ALIGN_FOOD = True   # Make food line up with snake
 SENSE_HAT = True    # Enable sense hat support
+DISABLE_RESIZE = True # Disable window resizing
 
 # TODO: Enhancements to add
 GET_CONFIG = False  # Gather config settings at start
@@ -99,6 +101,9 @@ if BG_IMG:
 wn.setup(width=game_width, height=game_height)
 wn.tracer(0)
 
+if DISABLE_RESIZE:
+    root = wn._root
+    root.resizable(False, False)
 
 # Init audio
 pygame.mixer.init()
@@ -389,7 +394,7 @@ while True:
 
         # Adding segment
         new_segment = turtle.Turtle()
-        new_segment.speed(0)
+        new_segment.speed = 0
         new_segment.shape(tail_shape)
         new_segment.color(tail_color)
         new_segment.penup()
@@ -400,7 +405,6 @@ while True:
 
         # Change tail color based on level
         if len(segments) % segments_level == 0:
-            print (min(int(len(segments) / segments_level),len(level_colors)-1))
             tail_color = level_colors[min(int(len(segments) / segments_level),len(level_colors)-1)]
 
         if SCORE_METHOD == "progressive":
