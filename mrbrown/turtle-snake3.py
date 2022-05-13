@@ -7,6 +7,7 @@ import time
 import pygame
 #from playsound import playsound
 from tkinter import PhotoImage
+from sense_hat import SenseHat
 
 p = os.path.dirname(os.path.abspath(__file__))
 
@@ -31,6 +32,7 @@ SOUND_EFFECTS = True # Play sound effects on eating/dying
 EXPLODE = True      # Show Explosing effect
 CLEAR_HS = False     # Reset high score when launching
 ALIGN_FOOD = True   # Make food line up with snake
+SENSE_HAT = True    # Enable sense hat support
 DISABLE_RESIZE = True # Disable window resizing
 
 # TODO: Enhancements to add
@@ -47,6 +49,12 @@ init_delay = 0.1
 show_stats = SHOW_STATS
 segments_level = 6
 segment_offset = 24
+
+sense = None
+sense_segments = 0
+if SENSE_HAT:
+    sense = SenseHat()
+    sense.clear()
 
 # Colors
 BLUE = (0.15, 0.1, 0.7)
@@ -464,6 +472,24 @@ while True:
     # Hiss now and then
     if SOUND_EFFECTS and stat_tick_count % random.randint(15,30) == 0:
         pygame.mixer.Sound.play(random.choice(hiss_sounds))
+
+    if SENSE_HAT:
+        # Only update if # has changed
+        if sense_segments != len(segments):
+            sense_segments = len(segments)
+            sense.clear()
+            # Fill a block for each segment
+            x,y = 0,0
+            for s in segments:
+                print(f'{s.color()}')
+                r = int(s.color()[0][0] * 255)
+                g = int(s.color()[0][1] * 255)
+                b = int(s.color()[0][2] * 255)
+                sense.set_pixel(x,y,r,g,b)
+                x += 1
+                if x == 8:
+                    x = 0
+                    y += 1
 
     time.sleep(delay)
     stat_tick_count += 1
