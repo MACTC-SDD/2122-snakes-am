@@ -8,13 +8,14 @@ import pygame
 delay = 0.1
 score = 0
 high_score = 0
-p = os.path.dirname(__file__)
+p = os.path.dirname(os.path.abspath(__file__))
+
 # Creating a window screen
 wn = turtle.Screen()
 wn.title("Snake Game")
 wn.bgcolor("blue")
 #Background
-wn.bgpic(f"{p}/morshu.gif")
+wn.bgpic(f"{p}/morshu2.gif")
 
 
 # the width and height can be put as user's choice
@@ -83,16 +84,16 @@ def goright():
 def move():
 	if head.direction == "up":
 		y = head.ycor()
-		head.sety(y+40)
+		head.sety(y+50)
 	if head.direction == "down":
 		y = head.ycor()
-		head.sety(y-40)
+		head.sety(y-50)
 	if head.direction == "left":
 		x = head.xcor()
-		head.setx(x-40)
+		head.setx(x-50)
 	if head.direction == "right":
 		x = head.xcor()
-		head.setx(x+40)
+		head.setx(x+50)
 
 
 wn.listen()
@@ -100,6 +101,11 @@ wn.onkeypress(group, "w")
 wn.onkeypress(godown, "s")
 wn.onkeypress(goleft, "a")
 wn.onkeypress(goright, "d")
+
+wn.onkeypress(group, "Up")
+wn.onkeypress(godown, "Down")
+wn.onkeypress(goleft, "Left")
+wn.onkeypress(goright, "Right")
 
 segments = []
 
@@ -120,7 +126,7 @@ while True:
 		pen.clear()
 		pen.write("Score : {} High Score : {} ".format(
 			score, high_score), align="center", font=("candara", 40, "bold"))
-	if head.distance(food) < 40:
+	if head.distance(food) < 50:
 		x = random.randint(-930, 920)
 		y = random.randint(-470, 470)
 		food.goto(x, y)
@@ -153,7 +159,7 @@ while True:
 		segments[0].goto(x, y)
 	move()
 	for segment in segments:
-		if segment.distance(head) < 40:
+		if segment.distance(head) < 50:
 			time.sleep(1)
 			head.goto(0, 0)
 			head.direction = "stop"
@@ -161,7 +167,7 @@ while True:
 			shapes = random.choice(['square', 'circle'])
 			for segment in segments:
 				segment.goto(1000, 1000)
-			segment.clear()
+			segments.clear()
 
 			score = 0
 			delay = 0.1

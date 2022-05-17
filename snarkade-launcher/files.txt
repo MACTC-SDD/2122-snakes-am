@@ -1,6 +1,11 @@
-Austin:austin/turtle-snake-austin.py
-Jasmine:jasmine/snek-game.py
-Keith:keith/turtle-snake-keith.py
-Kelsey:kelsey/turtle-snake-kf.py:cover.png
-Trevor:trevor/squid-games.py
-Desert Rattler:mrbrown/turtle-snake3.py:cover.png
+Angel:2122-snakes-am/angel/snek game.py:cover.png
+Austin:2122-snakes-am/austin/turtle-snake-austin.py:cover.png
+Jasmine:2122-snakes-am/jasmine/snek-game.py:cover.png
+Keith:2122-snakes-am/keith/turtle-snake-keith.py:cover.png
+Kelsey:2122-snakes-am/kelsey/turtle-snake-kf.py:cover.png
+Trevor:2122-snakes-am/trevor/squid-games.py:cover.png
+Desert Rattler:2122-snakes-am/mrbrown/turtle-snake3.py:cover.png
+Collin:2122-snakes-pm/collin/main.py:cover.png
+Gavin:2122-snakes-pm/gavin/snake.turtle-1.py:cover.png
+Julius:2122-snakes-pm/julius/turtle-snake-julius.py:cover.png
+Nolan:2122-snakes-pm/nolan/turtle-snake-nolan.py:cover.png

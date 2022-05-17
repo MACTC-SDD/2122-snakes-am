@@ -19,7 +19,7 @@ p = os.path.dirname(os.path.abspath(__file__))
 # Gradient - Luciel
 # Real-time boundary adjustment - Nolan
 # Food alignment - De'Antae
-# Disable resize - Colling
+# Disable resize - Collin
 BG_IMG = True       # Set background image
 HEAD_IMG = True     # Set snake head image
 SHOW_STATS = False   # Show statistics by default (toggle with '1')
