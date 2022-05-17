@@ -11,14 +11,14 @@ delay = 0.1
 score = 0
 high_score = 0
 quitting = False
-p = os.path.dirname(__file__)
+p = os.path.dirname(os.path.abspath(__file__))
 
 # Creating a window screen
 wn = turtle.Screen()
 wn.title("Snake Game: Zelda CDI Edition")
 wn.bgcolor("blue")
 #Background
-wn.bgpic(f"{p}morshu2.gif")
+wn.bgpic(f"{p}/morshu2.gif")
 
 
 # the width and height can be put as user's choice
@@ -27,18 +27,18 @@ wn.tracer(0)
 
 # Music
 pygame.mixer.init()
-dinner = pygame.mixer.Sound (f"{p}dinner.mp3")
-femur = pygame.mixer.Sound (f"{p}femur.mp3")
-hungry = pygame.mixer.Sound (f"{p}hungry.mp3")
-pygame.mixer.music.load(f"{p}zeldatheme.mp3")
+dinner = pygame.mixer.Sound (f"{p}/dinner.ogg")
+femur = pygame.mixer.Sound (f"{p}/femur.ogg")
+hungry = pygame.mixer.Sound (f"{p}/hungry.ogg")
+pygame.mixer.music.load(f"{p}/zeldatheme.mp3")
 pygame.mixer.music.play(-1)
 pygame.mixer.music.set_volume(0.5)
 
 # head of the snake
 head = turtle.Turtle()
 pygame.mixer.Sound.play(hungry)
-wn.register_shape (f"{p}CDILink.gif")
-head.shape(f"{p}CDILink.gif")
+wn.register_shape (f"{p}/CDILink.gif")
+head.shape(f"{p}/CDILink.gif")
 head.color("white")
 head.penup()
 head.goto(0, 0)
@@ -47,11 +47,11 @@ head.direction = "Stop"
 
 # food in the game
 food = turtle.Turtle()
-wn.register_shape (f"{p}octorok.gif")
+wn.register_shape (f"{p}/octorok.gif")
 colors = random.choice(['blue'])
 shapes = random.choice(['square', 'triangle', 'circle'])
 food.speed(0)
-food.shape(f"{p}octorok.gif")
+food.shape(f"{p}/octorok.gif")
 food.color(colors)
 food.penup()
 food.goto(0, 100)
@@ -69,8 +69,8 @@ pen.write("Score : 0 High Score : 0", align="center",
 
 # Main Menu
 menu = turtle.Turtle()
-wn.register_shape (f"{p}Main Menu.gif")
-menu.shape(f"{p}Main Menu.gif")
+wn.register_shape (f"{p}/Main Menu.gif")
+menu.shape(f"{p}/Main Menu.gif")
 menu.penup()
 menu.color("black")
 menu.goto(0, 0)
@@ -166,10 +166,10 @@ while True and not quitting:
 
 		# Adding segment
 		new_segment = turtle.Turtle()
-		wn.register_shape (f"{p}heart.gif")
+		wn.register_shape (f"{p}/heart.gif")
 		pygame.mixer.Sound.play(dinner)
 		new_segment.speed(0)
-		new_segment.shape(f"{p}heart.gif")
+		new_segment.shape(f"{p}/heart.gif")
 		new_segment.color("orange") # tail colour
 		new_segment.penup()
 		segments.append(new_segment)
