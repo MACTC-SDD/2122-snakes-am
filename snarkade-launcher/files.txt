@@ -1,5 +1,5 @@
 Angel:2122-snakes-am/angel/snek game.py:cover.png
-Austin:2122-snakes-am/austin/turtle-snake-austin.py:cover.png
+Austin:2122-snakes-am/austin/turtle-snake.py:thumbnail.png
 Jasmine:2122-snakes-am/jasmine/snek-game.py:cover.png
 Keith:2122-snakes-am/keith/turtle-snake-keith.py:cover.png
 Kelsey:2122-snakes-am/kelsey/turtle-snake-kf.py:cover.png
