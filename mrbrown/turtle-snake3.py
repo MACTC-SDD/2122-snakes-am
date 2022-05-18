@@ -339,7 +339,6 @@ def lose_game():
         data = '{' + data + '}'
         r = requests.post(f'{hs_link}', headers={'Content-Type': 'application/json'}, data=data)
         #pprint.pprint(vars(r))
-        print(r)
     except:
         print(f'Failed to post high score: {r.status_code}')
         #pprint.pprint(vars(r))
