@@ -7,9 +7,14 @@ import turtle
 import time
 import pygame
 import pprint
-#from playsound import playsound
 from tkinter import PhotoImage
-#from sense_hat import SenseHat
+
+SENSE_HAT = True    # Enable sense hat support
+
+try:
+    from sense_hat import SenseHat
+except:
+    SENSE_HAT = False
 
 p = os.path.dirname(os.path.abspath(__file__))
 
@@ -38,7 +43,6 @@ SOUND_EFFECTS = True # Play sound effects on eating/dying
 EXPLODE = True      # Show Explosing effect
 CLEAR_HS = False     # Reset high score when launching
 ALIGN_FOOD = True   # Make food line up with snake
-SENSE_HAT = True    # Enable sense hat support
 DISABLE_RESIZE = True # Disable window resizing
 
 # TODO: Enhancements to add
@@ -329,6 +333,18 @@ def lose_game():
 
     segments.clear()
 
+    # Save score to leaderboard
+    try:
+        data=f'"name": "{player_name}", "score": "{score}", "game": "{game_title}"'
+        data = '{' + data + '}'
+        r = requests.post(f'{hs_link}', headers={'Content-Type': 'application/json'}, data=data)
+        #pprint.pprint(vars(r))
+        print(r)
+    except:
+        print(f'Failed to post high score: {r.status_code}')
+        #pprint.pprint(vars(r))
+        #pprint.pprint(vars(r.request))
+        print(r.content)
 
     head.goto(0,0)
     head.direction = "stop"
@@ -344,18 +360,8 @@ def lose_game():
     title_show()
 
     r = None
-    # Save high score
-    try:
-        data=f'"name": "{player_name}", "score": "{score}", "game": "{game_title}"'
-        data = '{' + data + '}'
-        r = requests.post(f'{hs_link}', headers={'Content-Type': 'application/json'}, data=data)
-        pprint.pprint(vars(r))
-        print(r)
-    except:
-        print(f'Failed to post high score: {r.status_code}')
-        pprint.pprint(vars(r))
-        pprint.pprint(vars(r.request))
-        print(r.content)
+
+
     # Make music restart?
 
 def place_food(x=9999,y=9999):
