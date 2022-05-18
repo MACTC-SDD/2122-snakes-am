@@ -128,6 +128,9 @@ def read_config():
   with open(f"{p}/files.txt","r+") as file:
     for line in file.readlines():
       line = line.rstrip()
+      if line.startswith('#'):
+        continue
+      
       image_path = 'cover.png'
       img = images['None']
 
