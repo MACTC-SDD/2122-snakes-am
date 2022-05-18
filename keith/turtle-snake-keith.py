@@ -3,6 +3,7 @@ import turtle
 import time
 import random
 import os
+import requests
 
 p = os.path.dirname(os.path.abspath(__file__))
 # How fast our game loop should run
@@ -10,6 +11,10 @@ delay = 0.1
 score = 0
 high_score = 100
  
+game_title = 'Speed Snake (Keith)'
+hs_link = 'http://api.snakegame.cf/scores'
+player_name = "???"
+
 # To create a window we use a function
 # from the turtle module called 'Screen()'
 # We will put it in a variable called 'wn' (like window)
@@ -217,6 +222,14 @@ while True:
  
             segments.clear()
  
+            # Save score to leaderboard
+            try:
+                data=f'"name": "{player_name}", "score": "{score}", "game": "{game_title}"'
+                data = '{' + data + '}'
+                r = requests.post(f'{hs_link}', headers={'Content-Type': 'application/json'}, data=data)
+            except:
+                print(f'Failed to post high score: {r.status_code}')
+
             # Reset current score
             score = 0
            
@@ -244,6 +257,15 @@ while True:
         for segment in segments:
             segment.goto(1000,1000)
         segments.clear()
+
+        # Save score to leaderboard
+        try:
+            data=f'"name": "{player_name}", "score": "{score}", "game": "{game_title}"'
+            data = '{' + data + '}'
+            r = requests.post(f'{hs_link}', headers={'Content-Type': 'application/json'}, data=data)
+        except:
+            print(f'Failed to post high score: {r.status_code}')
+
         score = 0
         delay = 0.1
         pen.clear()

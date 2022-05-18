@@ -2,6 +2,11 @@
 import turtle
 import time
 import random
+import requests
+
+game_title = 'Spooky Snake (Kelsey)'
+hs_link = 'http://api.snakegame.cf/scores'
+player_name = "???"
 
 # How fast our game loop should run
 delay = 0.1
@@ -182,6 +187,14 @@ while True:
 
             segments.clear()
 
+            # Save score to leaderboard
+            try:
+                data=f'"name": "{player_name}", "score": "{score}", "game": "{game_title}"'
+                data = '{' + data + '}'
+                r = requests.post(f'{hs_link}', headers={'Content-Type': 'application/json'}, data=data)
+            except:
+                print(f'Failed to post high score: {r.status_code}')
+
             # Reset current score, delay
             score = 0
             delay = 0.1
@@ -208,6 +221,15 @@ while True:
         for segment in segments:
             segment.goto(1000,1000)
         segments.clear()
+
+        # Save score to leaderboard
+        try:
+            data=f'"name": "{player_name}", "score": "{score}", "game": "{game_title}"'
+            data = '{' + data + '}'
+            r = requests.post(f'{hs_link}', headers={'Content-Type': 'application/json'}, data=data)
+        except:
+            print(f'Failed to post high score: {r.status_code}')
+
         score = 0
         delay = 0.1
         update_score()
