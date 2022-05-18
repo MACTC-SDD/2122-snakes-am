@@ -65,7 +65,7 @@ pen.penup()
 pen.hideturtle()
 pen.goto(-680, 440)
 pen.write("Score : 0 High Score : 0", align="center",
-		font=("candara", 30, "bold"))
+		font=("candara", 25, "bold"))
 
 # Main Menu
 menu = turtle.Turtle()
@@ -158,7 +158,7 @@ while True and not quitting:
 		delay = 0.1
 		pen.clear()
 		pen.write("Score : {} High Score : {} ".format(
-			score, high_score), align="center", font=("candara", 30, "bold"))
+			score, high_score), align="center", font=("candara", 25, "bold"))
 	if head.distance(food) < 60:
 		x = random.randint(-930, 920)
 		y = random.randint(-470, 470)
@@ -179,7 +179,7 @@ while True and not quitting:
 			high_score = score
 		pen.clear()
 		pen.write("Score : {} High Score : {} ".format(
-			score, high_score), align="center", font=("candara", 30, "bold"))
+			score, high_score), align="center", font=("candara", 25, "bold"))
 	# Checking for head collisions with body segments
 	for index in range(len(segments)-1, 0, -1):
 		x = segments[index-1].xcor()
@@ -206,7 +206,7 @@ while True and not quitting:
 			delay = 0.1
 			pen.clear()
 			pen.write("Score : {} High Score : {} ".format(
-				score, high_score), align="center", font=("candara", 30, "bold"))
+				score, high_score), align="center", font=("candara", 25, "bold"))
 	time.sleep(delay)
 
 
