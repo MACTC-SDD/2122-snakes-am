@@ -1,15 +1,21 @@
 import os
 import math
 import random
+import requests
 from re import L
 import turtle
 import time
 import pygame
+import pprint
 #from playsound import playsound
 from tkinter import PhotoImage
-from sense_hat import SenseHat
+#from sense_hat import SenseHat
 
 p = os.path.dirname(os.path.abspath(__file__))
+
+game_title = 'Desert Rattler'
+hs_link = 'http://api.snakegame.cf/scores'
+player_name = "???"
 
 # Game enhancement options
 # Elapsed Time - Kelsey
@@ -53,8 +59,12 @@ segment_offset = 24
 sense = None
 sense_segments = 0
 if SENSE_HAT:
-    sense = SenseHat()
-    sense.clear()
+    try:
+        sense = SenseHat()
+        sense.clear()
+    except:
+        # If we can't connect for some reason, skip it
+        SENSE_HAT = False
 
 # Colors
 BLUE = (0.15, 0.1, 0.7)
@@ -333,6 +343,19 @@ def lose_game():
     update_stats()
     title_show()
 
+    r = None
+    # Save high score
+    try:
+        data=f'"name": "{player_name}", "score": "{score}", "game": "{game_title}"'
+        data = '{' + data + '}'
+        r = requests.post(f'{hs_link}', headers={'Content-Type': 'application/json'}, data=data)
+        pprint.pprint(vars(r))
+        print(r)
+    except:
+        print(f'Failed to post high score: {r.status_code}')
+        pprint.pprint(vars(r))
+        pprint.pprint(vars(r.request))
+        print(r.content)
     # Make music restart?
 
 def place_food(x=9999,y=9999):
