@@ -10,7 +10,7 @@ from tkinter import PhotoImage
 
 p = os.path.dirname(os.path.abspath(__file__))
 
-game_title = 'Anchors Away (Angel)'
+game_title = 'Sailor Savior (Angel)'
 hs_link = 'http://api.snakegame.cf/scores'
 player_name = "???"
 
