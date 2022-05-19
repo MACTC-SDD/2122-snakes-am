@@ -24,7 +24,7 @@ except ImportError:
 window=Tk()
 window.geometry("550x400")
 window.resizable(False,False)
-window.title("Snack Arcad")
+window.title("Snake Arcade")
 window['bg']="black"
 
 font1=("Comic Sans MS","16")
