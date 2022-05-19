@@ -31,7 +31,7 @@ wn.title("Snake Game")
 wn.bgcolor("blue")
 
 # background
-wn.bgpic(f"{p}/Snakegamelawn.gif")
+wn.bgpic(f"{p}/snakegamelawn.gif")
 # Set the size of our window
 wn.setup(width=1920, height=1080)
 
