@@ -3,9 +3,9 @@ Austin:2122-snakes-am/austin/turtle-snake.py:thumbnail.png
 Jasmine:2122-snakes-am/jasmine/snek-game.py:cover.png
 Keith:2122-snakes-am/keith/turtle-snake-keith.py:cover.png
 Kelsey:2122-snakes-am/kelsey/turtle-snake-kf.py:cover.png
-Nick:2122-snakes-am/nick/snakegame.py:snakelogo.jpg
+#Nick:2122-snakes-am/nick/snakegame.py:snakelogo.jpg
 Trevor:2122-snakes-am/trevor/squid-games.py:cover.png
-#Desert Rattler:2122-snakes-am/mrbrown/turtle-snake3.py:cover.png
+Desert Rattler:2122-snakes-am/mrbrown/turtle-snake3.py:cover.png
 Alex:2122-snakes-pm/alex/try2.py:cover.png
 Collin:2122-snakes-pm/collin/main.py:cover.png
 Gavin:2122-snakes-pm/gavin/snake.turtle-1.py:cover.png
