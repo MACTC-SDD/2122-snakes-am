@@ -333,6 +333,8 @@ def lose_game():
 
     segments.clear()
 
+    r = None
+    
     # Save score to leaderboard
     try:
         data=f'"name": "{player_name}", "score": "{score}", "game": "{game_title}"'
